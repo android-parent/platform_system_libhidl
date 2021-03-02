@@ -158,6 +158,7 @@ namespace details {
  * current time. This is useful for measuring how long it took a HAL to register itself.
  */
 static long getProcessAgeMs() {
+#if 0 // HACKED
     constexpr const int PROCFS_STAT_STARTTIME_INDEX = 21;
     std::string content;
     android::base::ReadFileToString("/proc/self/stat", &content, false);
@@ -175,6 +176,7 @@ static long getProcessAgeMs() {
         long startTimeMs = 1000ULL * startTimeInClockTicks / ticksPerSecond;
         return uptime - startTimeMs;
     }
+#endif
     return -1;
 }
 
